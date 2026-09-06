@@ -71,7 +71,14 @@
 
   const projection = d3.geoNaturalEarth1().fitSize([width, height], { type: "Sphere" });
   const path = d3.geoPath(projection);
-  const colorScale = d3.scaleSequential().domain([0, maxCount]).interpolator(d3.interpolateRgb(emptyColor, primaryColor));
+  // A plain linear scale would make every country except the single
+  // largest (usually the US, by a wide margin) look almost indistinguishable
+  // from "no visits" — a sqrt scale compresses that outlier's dominance so
+  // mid-sized real counts stay visually legible.
+  const colorScale = d3
+    .scaleSequentialSqrt()
+    .domain([0, maxCount])
+    .interpolator(d3.interpolateRgb(emptyColor, primaryColor));
 
   svg
     .selectAll("path.country")
