@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recognizing Phishing &amp; Scam Calls — Stay Safe Online by TechEase</title>
+  <meta name="description" content="How to spot fake emails, texts, and phone calls designed to steal your information or money." />
+  <link rel="icon" href="/assets/img/techease-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <script type="importmap">
+    { "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav">
+      <a class="nav-brand" href="/">
+        <img src="/assets/img/techease-logo.png" alt="TechEase logo" />
+        <span class="nav-brand-text"><strong>Stay Safe Online</strong><span>a free course by TechEase</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/course.html" aria-current="page">Course</a></li>
+        <li><a href="/resources.html">Resources</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a class="btn btn-outline" href="https://www.techeasefl.org/" target="_blank" rel="noopener">Visit TechEase.org</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="lesson-header">
+      <div class="container">
+        <p class="breadcrumb"><a href="/course.html">Course</a> &rsaquo; Module 2 of 6</p>
+        <div class="lesson-head-row">
+          <div class="lesson-icon-canvas" data-icon-type="mail" aria-hidden="true"></div>
+          <div>
+            <h1>Recognizing Phishing &amp; Scam Calls</h1>
+            <p style="color: var(--muted-foreground); margin-bottom: 0;">Spot the red flags in emails, texts, and phone calls before they cost you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <article class="lesson-body">
+      <h2>What is phishing?</h2>
+      <p>
+        Phishing is a fake message — email, text, or phone call — that pretends to come from a
+        trusted source, like your bank, Amazon, Social Security, or even a family member, in
+        order to trick you into clicking a link, sharing personal information, or sending money.
+      </p>
+
+      <h2>Common red flags</h2>
+      <ul>
+        <li><strong>Urgency and fear:</strong> "Your account will be closed in 24 hours" or "Suspicious activity detected"</li>
+        <li><strong>Requests for gift cards or wire transfers</strong> — no legitimate company or agency asks to be paid this way</li>
+        <li><strong>An unfamiliar sender address</strong> that looks close to, but not quite, the real company's</li>
+        <li><strong>Generic greetings</strong> like "Dear Customer" instead of your name</li>
+        <li><strong>Spelling and grammar mistakes</strong></li>
+        <li><strong>Links that don't match</strong> the real company's website when you hover over them</li>
+        <li><strong>Unsolicited pop-ups or calls</strong> claiming your computer has a virus</li>
+      </ul>
+
+      <div class="example-box">
+        "This is Microsoft support calling. We've detected a virus on your computer. Please
+        allow us to remotely connect so we can remove it." — This is a classic tech support
+        scam. Microsoft, Apple, and similar companies do not make unsolicited calls like this.
+      </div>
+
+      <h2>Scams that specifically target seniors</h2>
+      <ul>
+        <li><strong>Tech support scams:</strong> a fake pop-up or call claims your device is infected</li>
+        <li><strong>Grandparent scams:</strong> a caller pretends to be a grandchild in an emergency, asking for money urgently and secretly</li>
+        <li><strong>Social Security / Medicare scams:</strong> callers claim your benefits are suspended unless you "verify" personal information</li>
+        <li><strong>Romance scams:</strong> an online relationship develops over time, then the person asks for money for a crisis</li>
+      </ul>
+
+      <div class="callout">
+        <h3>✅ Quick tips</h3>
+        <ul>
+          <li>Never click links in unexpected emails or texts — go to the company's website directly instead</li>
+          <li>Hang up and call the company or agency back using a number you look up yourself</li>
+          <li>Verify with a family member by phone before sending money for an "emergency"</li>
+          <li>Never give a stranger remote access to your computer</li>
+          <li>When in doubt, pause and ask someone you trust before responding</li>
+        </ul>
+      </div>
+
+      <div id="quiz"></div>
+
+      <div class="lesson-actions">
+        <a class="btn btn-outline" href="/course.html">&larr; Back to course</a>
+        <div class="lesson-nav-links">
+          <a class="btn btn-outline" href="/lessons/1-ransomware-basics.html">&larr; Prev</a>
+          <button class="btn btn-accent" id="mark-complete">Mark lesson complete</button>
+          <a class="btn btn-primary" href="/lessons/3-password-security.html">Next: Password Security &rarr;</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">© <span data-year></span> TechEase. This companion course is free and provided for educational purposes.</div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/js/three-icon.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script type="module">
+    import { renderQuiz } from "/assets/js/quiz.js";
+    import { markComplete, isComplete } from "/assets/js/progress.js";
+
+    renderQuiz(document.getElementById("quiz"), [
+      {
+        q: "Your bank emails saying your account will be closed in 24 hours unless you click a link. What should you do?",
+        options: [
+          "Click the link right away to avoid losing your account",
+          "Ignore the email and log in to your bank account directly through the bank's official website or app",
+          "Reply to the email asking for more details",
+        ],
+        correct: 1,
+        explanation: "Urgency is a classic phishing tactic. Always go directly to the company's official site or app instead of clicking a link in the message.",
+      },
+      {
+        q: "Someone calls claiming to be tech support and asks for remote access to fix a virus you didn't report. What's the safest response?",
+        options: [
+          "Grant access since they sound official",
+          "Hang up — legitimate companies don't make unsolicited calls like this",
+          "Give them your password to speed things up",
+        ],
+        correct: 1,
+        explanation: "This is a classic tech support scam. Hang up and, if concerned, contact the company using a number you look up yourself.",
+      },
+      {
+        q: "A caller claims to be your grandchild in trouble and asks you to wire money immediately without telling anyone. Best move?",
+        options: [
+          "Send the money quickly since it's an emergency",
+          "Hang up and call your grandchild or another family member directly to verify",
+          "Ask the caller for their bank account number",
+        ],
+        correct: 1,
+        explanation: "This is the 'grandparent scam.' Always verify independently before sending money for an emergency.",
+      },
+    ]);
+
+    const btn = document.getElementById("mark-complete");
+    const LESSON_ID = "2";
+    function refresh() {
+      btn.textContent = isComplete(LESSON_ID) ? "✓ Lesson complete" : "Mark lesson complete";
+    }
+    btn.addEventListener("click", () => {
+      markComplete(LESSON_ID);
+      refresh();
+    });
+    refresh();
+  </script>
+</body>
+</html>

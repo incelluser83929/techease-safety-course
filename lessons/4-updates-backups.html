@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Updates &amp; Backups — Stay Safe Online by TechEase</title>
+  <meta name="description" content="Why keeping software updated and backing up your files is the single best defense against ransomware." />
+  <link rel="icon" href="/assets/img/techease-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <script type="importmap">
+    { "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav">
+      <a class="nav-brand" href="/">
+        <img src="/assets/img/techease-logo.png" alt="TechEase logo" />
+        <span class="nav-brand-text"><strong>Stay Safe Online</strong><span>a free course by TechEase</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/course.html" aria-current="page">Course</a></li>
+        <li><a href="/resources.html">Resources</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a class="btn btn-outline" href="https://www.techeasefl.org/" target="_blank" rel="noopener">Visit TechEase.org</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="lesson-header">
+      <div class="container">
+        <p class="breadcrumb"><a href="/course.html">Course</a> &rsaquo; Module 4 of 6</p>
+        <div class="lesson-head-row">
+          <div class="lesson-icon-canvas" data-icon-type="refresh" aria-hidden="true"></div>
+          <div>
+            <h1>Updates &amp; Backups</h1>
+            <p style="color: var(--muted-foreground); margin-bottom: 0;">The single best defense against ransomware — and it's free.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <article class="lesson-body">
+      <h2>Why software updates matter</h2>
+      <p>
+        Every so often, security researchers discover holes in an operating system or app that
+        criminals can exploit. Companies release "updates" or "patches" to fix those holes.
+        An out-of-date device is like a house with a door that's known to be unlocked — updating
+        closes that door.
+      </p>
+      <ul>
+        <li>Turn on automatic updates for your operating system (Windows, macOS, iOS, Android)</li>
+        <li>Keep your web browser updated — it's one of the most common entry points</li>
+        <li>Update apps regularly, especially ones that handle email, messages, or files</li>
+      </ul>
+
+      <h2>Backups: your safety net</h2>
+      <p>
+        A backup is a copy of your files stored somewhere separate from your main device. If
+        ransomware ever locks your files, a good backup means you can simply restore them —
+        the ransom demand becomes irrelevant.
+      </p>
+
+      <div class="callout">
+        <h3>✅ The 3-2-1 backup rule</h3>
+        <ul>
+          <li><strong>3</strong> copies of your important files (the original plus two backups)</li>
+          <li><strong>2</strong> different types of storage (e.g., an external hard drive and a cloud service)</li>
+          <li><strong>1</strong> copy stored somewhere separate from your home, such as the cloud</li>
+        </ul>
+      </div>
+
+      <h2>Simple ways to back up</h2>
+      <ul>
+        <li>Turn on automatic photo backup on your phone (most phones offer this built in)</li>
+        <li>Use a cloud backup service to automatically save your documents and photos</li>
+        <li>Periodically copy important files to an external hard drive kept unplugged when not in use</li>
+      </ul>
+
+      <div class="example-box">
+        Keeping a backup drive permanently plugged in means ransomware can encrypt that backup
+        too. Disconnect external backup drives when you're not actively backing up.
+      </div>
+
+      <div class="callout">
+        <h3>✅ Quick tips</h3>
+        <ul>
+          <li>Turn on automatic updates wherever possible</li>
+          <li>Set up at least one automatic backup method today</li>
+          <li>Keep at least one backup disconnected from your main device</li>
+          <li>Test occasionally that you can actually open a backed-up file</li>
+        </ul>
+      </div>
+
+      <div id="quiz"></div>
+
+      <div class="lesson-actions">
+        <a class="btn btn-outline" href="/course.html">&larr; Back to course</a>
+        <div class="lesson-nav-links">
+          <a class="btn btn-outline" href="/lessons/3-password-security.html">&larr; Prev</a>
+          <button class="btn btn-accent" id="mark-complete">Mark lesson complete</button>
+          <a class="btn btn-primary" href="/lessons/5-safe-browsing.html">Next: Safe Browsing &rarr;</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">© <span data-year></span> TechEase. This companion course is free and provided for educational purposes.</div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/js/three-icon.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script type="module">
+    import { renderQuiz } from "/assets/js/quiz.js";
+    import { markComplete, isComplete } from "/assets/js/progress.js";
+
+    renderQuiz(document.getElementById("quiz"), [
+      {
+        q: "Why do software updates matter for security?",
+        options: [
+          "They make your device look nicer",
+          "They fix known security holes that criminals could otherwise exploit",
+          "They are required by law",
+        ],
+        correct: 1,
+        explanation: "Updates patch security holes that have been discovered — skipping them leaves those holes open.",
+      },
+      {
+        q: "What does the 3-2-1 backup rule recommend?",
+        options: [
+          "3 passwords, 2 usernames, 1 email address",
+          "3 copies of your files, on 2 different types of storage, with 1 copy stored offsite",
+          "Backing up once every 3 months",
+        ],
+        correct: 1,
+        explanation: "3 copies, 2 different storage types, 1 offsite (like the cloud) — this way no single failure or attack wipes out everything.",
+      },
+      {
+        q: "Why should you disconnect an external backup drive when you're not using it?",
+        options: [
+          "To save electricity",
+          "So ransomware on your computer can't also encrypt the backup",
+          "It's not necessary to disconnect it",
+        ],
+        correct: 1,
+        explanation: "A backup drive that's always connected can be encrypted right along with your main files during a ransomware attack.",
+      },
+    ]);
+
+    const btn = document.getElementById("mark-complete");
+    const LESSON_ID = "4";
+    function refresh() {
+      btn.textContent = isComplete(LESSON_ID) ? "✓ Lesson complete" : "Mark lesson complete";
+    }
+    btn.addEventListener("click", () => {
+      markComplete(LESSON_ID);
+      refresh();
+    });
+    refresh();
+  </script>
+</body>
+</html>

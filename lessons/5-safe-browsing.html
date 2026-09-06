@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safe Browsing &amp; Downloads — Stay Safe Online by TechEase</title>
+  <meta name="description" content="How to avoid fake pop-ups, malicious downloads, and risky public Wi-Fi habits." />
+  <link rel="icon" href="/assets/img/techease-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <script type="importmap">
+    { "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav">
+      <a class="nav-brand" href="/">
+        <img src="/assets/img/techease-logo.png" alt="TechEase logo" />
+        <span class="nav-brand-text"><strong>Stay Safe Online</strong><span>a free course by TechEase</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/course.html" aria-current="page">Course</a></li>
+        <li><a href="/resources.html">Resources</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a class="btn btn-outline" href="https://www.techeasefl.org/" target="_blank" rel="noopener">Visit TechEase.org</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="lesson-header">
+      <div class="container">
+        <p class="breadcrumb"><a href="/course.html">Course</a> &rsaquo; Module 5 of 6</p>
+        <div class="lesson-head-row">
+          <div class="lesson-icon-canvas" data-icon-type="shield" aria-hidden="true"></div>
+          <div>
+            <h1>Safe Browsing &amp; Downloads</h1>
+            <p style="color: var(--muted-foreground); margin-bottom: 0;">Avoid the fake pop-ups and downloads that install malware.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <article class="lesson-body">
+      <h2>Only download from trusted sources</h2>
+      <ul>
+        <li>Get apps only from your device's official app store (App Store, Google Play, Microsoft Store)</li>
+        <li>Download software only from the company's real, official website</li>
+        <li>Be extra cautious with "free" versions of paid software, movies, or games — these are common malware traps</li>
+      </ul>
+
+      <h2>Watch out for fake pop-ups</h2>
+      <p>
+        A pop-up claiming "Your Flash Player is out of date" or "Update your browser now" is
+        almost always fake — and clicking it can install malware, including ransomware. Real
+        software updates come from within the app itself or your device's settings, not a
+        random pop-up while browsing.
+      </p>
+
+      <div class="callout warning">
+        <h3>⚠️ Never click:</h3>
+        <ul>
+          <li>"You've won a prize!" pop-ups</li>
+          <li>"Virus detected — click here to remove" banner ads</li>
+          <li>Countdown timers pressuring you to act immediately</li>
+        </ul>
+      </div>
+
+      <h2>Public Wi-Fi caution</h2>
+      <p>
+        Public Wi-Fi at a coffee shop, airport, or library isn't always secure. Avoid entering
+        passwords or financial information while connected to public Wi-Fi unless you trust the
+        network, or use your phone's cellular data instead for anything sensitive.
+      </p>
+
+      <h2>Check before you click "sensitive"</h2>
+      <p>
+        Before entering a password or credit card number, check that the website address
+        starts with <strong>https://</strong> (not just http://) and look for a small lock icon
+        in your browser's address bar. This means the connection is encrypted — though it
+        doesn't guarantee the site itself is trustworthy, so it's still worth double-checking
+        the web address is spelled correctly.
+      </p>
+
+      <div class="callout">
+        <h3>✅ Quick tips</h3>
+        <ul>
+          <li>Download apps and software only from official sources</li>
+          <li>Never click "update now" pop-ups that appear while browsing</li>
+          <li>Avoid entering sensitive information on public Wi-Fi</li>
+          <li>Double check web addresses before entering passwords or payment details</li>
+        </ul>
+      </div>
+
+      <div id="quiz"></div>
+
+      <div class="lesson-actions">
+        <a class="btn btn-outline" href="/course.html">&larr; Back to course</a>
+        <div class="lesson-nav-links">
+          <a class="btn btn-outline" href="/lessons/4-updates-backups.html">&larr; Prev</a>
+          <button class="btn btn-accent" id="mark-complete">Mark lesson complete</button>
+          <a class="btn btn-primary" href="/lessons/6-if-youre-a-victim.html">Next: If You're a Victim &rarr;</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">© <span data-year></span> TechEase. This companion course is free and provided for educational purposes.</div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/js/three-icon.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script type="module">
+    import { renderQuiz } from "/assets/js/quiz.js";
+    import { markComplete, isComplete } from "/assets/js/progress.js";
+
+    renderQuiz(document.getElementById("quiz"), [
+      {
+        q: "A pop-up says 'Your browser is out of date, click here to update.' What should you do?",
+        options: [
+          "Click it right away to stay protected",
+          "Close it and check for updates through your browser or device settings instead",
+          "Share it with a friend first",
+        ],
+        correct: 1,
+        explanation: "Real updates come from your device's settings or the app itself, never a random browsing pop-up.",
+      },
+      {
+        q: "What's a safer alternative to entering a password on public Wi-Fi?",
+        options: [
+          "Use your phone's cellular data instead for anything sensitive",
+          "Type the password slowly",
+          "Use a shorter password",
+        ],
+        correct: 0,
+        explanation: "Public Wi-Fi isn't always secure. Cellular data (or a trusted private network) is a safer choice for sensitive logins.",
+      },
+      {
+        q: "What should you look for before entering a password on a website?",
+        options: [
+          "A colorful design",
+          "https:// and a lock icon in the address bar, and a correctly spelled web address",
+          "A pop-up asking to confirm your identity",
+        ],
+        correct: 1,
+        explanation: "https:// and the lock icon indicate an encrypted connection — always check the web address is correct too.",
+      },
+    ]);
+
+    const btn = document.getElementById("mark-complete");
+    const LESSON_ID = "5";
+    function refresh() {
+      btn.textContent = isComplete(LESSON_ID) ? "✓ Lesson complete" : "Mark lesson complete";
+    }
+    btn.addEventListener("click", () => {
+      markComplete(LESSON_ID);
+      refresh();
+    });
+    refresh();
+  </script>
+</body>
+</html>
