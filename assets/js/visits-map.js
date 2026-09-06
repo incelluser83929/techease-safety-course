@@ -37,12 +37,17 @@
     numericToAlpha2[info.numeric] = alpha2;
   });
 
+  // The topology stores ids as zero-padded strings (e.g. "076" for Brazil,
+  // "036" for Australia), but our mapping table's keys have no leading
+  // zeros — normalize through Number() before lookup either way.
+  const normalizeId = (id) => String(Number(id));
+
   const countFor = (featureId) => {
-    const alpha2 = numericToAlpha2[String(featureId)];
+    const alpha2 = numericToAlpha2[normalizeId(featureId)];
     return alpha2 ? byCountry[alpha2] || 0 : 0;
   };
   const nameFor = (feature) => {
-    const alpha2 = numericToAlpha2[String(feature.id)];
+    const alpha2 = numericToAlpha2[normalizeId(feature.id)];
     return (alpha2 && isoMap[alpha2] && isoMap[alpha2].name) || feature.properties?.name || "Unknown";
   };
 
