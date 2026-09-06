@@ -1,30 +1,15 @@
-/* Illustrative, disclosed impact model — NOT a measured count of real users
-   or verified outcomes. See the "How we calculate this" disclosure on the
-   page for the methodology. It grows a small, deterministic amount each day
-   since launch (so everyone sees the same figure on a given day), then
-   animates a count-up when scrolled into view, plus a slow cosmetic tick
-   while a visitor lingers — a stylistic touch, not a claim of real-time
-   events. */
+/* Real, disclosed impact model. "Site visits since launch" is a genuine
+   server-recorded count from a Netlify Function backed by Netlify Blobs
+   (see netlify/functions/visits.js) — not a simulation or borrowed number.
+   It increments once per browser session (via sessionStorage) so refreshing
+   the page doesn't inflate it. The "scams avoided" / "money protected"
+   figures are still illustrative extrapolations from that real count — we
+   have no way to measure actual scam outcomes — and that assumption is
+   disclosed in the page's "How we calculate this" section. */
 
-const LAUNCH_DATE = Date.UTC(2026, 8, 6); // 2026-09-06
-const BASE_REACH = 21000;
-const AVG_DAILY_GROWTH = 14;
 const AVOIDANCE_RATE = 0.32;
 const AVG_LOSS_AVOIDED = 1000;
-
-function seededWobble(seed) {
-  const x = Math.sin(seed * 12.9898) * 43758.5453;
-  return (x - Math.floor(x)) * 10 - 5;
-}
-
-function computeReach() {
-  const daysSince = Math.max(0, Math.floor((Date.now() - LAUNCH_DATE) / 86400000));
-  let total = BASE_REACH;
-  for (let d = 1; d <= daysSince; d += 1) {
-    total += AVG_DAILY_GROWTH + seededWobble(d);
-  }
-  return Math.round(total);
-}
+const SESSION_FLAG = "techease-visit-counted";
 
 function formatNumber(n) {
   return Math.round(n).toLocaleString("en-US");
@@ -41,27 +26,63 @@ function animateCount(el, target, formatter, duration) {
   requestAnimationFrame(tick);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+async function fetchRealVisitCount() {
+  let alreadyCounted = false;
+  try {
+    alreadyCounted = sessionStorage.getItem(SESSION_FLAG) === "1";
+  } catch {
+    /* sessionStorage unavailable (private browsing) — fall back to GET-only */
+    alreadyCounted = true;
+  }
+
+  const response = await fetch("/.netlify/functions/visits", {
+    method: alreadyCounted ? "GET" : "POST",
+  });
+  if (!response.ok) throw new Error(`visits function returned ${response.status}`);
+  const data = await response.json();
+
+  if (!alreadyCounted) {
+    try {
+      sessionStorage.setItem(SESSION_FLAG, "1");
+    } catch {
+      /* ignore — non-critical */
+    }
+  }
+
+  return data.count;
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
   const reachEl = document.getElementById("impact-reach");
   const scamsEl = document.getElementById("impact-scams");
   const moneyEl = document.getElementById("impact-money");
+  const noteEl = document.getElementById("impact-note");
   if (!reachEl || !scamsEl || !moneyEl) return;
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let reach = computeReach();
-  let animatedIn = false;
+
+  let reach;
+  try {
+    reach = await fetchRealVisitCount();
+  } catch {
+    reachEl.textContent = "—";
+    scamsEl.textContent = "—";
+    moneyEl.textContent = "—";
+    if (noteEl) noteEl.textContent = "Live counter is temporarily unavailable — check back soon.";
+    return;
+  }
 
   function render(animate) {
     const scams = reach * AVOIDANCE_RATE;
     const money = scams * AVG_LOSS_AVOIDED;
     if (animate && !prefersReducedMotion) {
-      animateCount(reachEl, reach, (v) => `${formatNumber(v)}+`, 1600);
-      animateCount(scamsEl, scams, (v) => `${formatNumber(v)}+`, 1600);
-      animateCount(moneyEl, money, (v) => `$${formatNumber(v)}+`, 1600);
+      animateCount(reachEl, reach, formatNumber, 1200);
+      animateCount(scamsEl, scams, formatNumber, 1200);
+      animateCount(moneyEl, money, (v) => `$${formatNumber(v)}`, 1200);
     } else {
-      reachEl.textContent = `${formatNumber(reach)}+`;
-      scamsEl.textContent = `${formatNumber(scams)}+`;
-      moneyEl.textContent = `$${formatNumber(money)}+`;
+      reachEl.textContent = formatNumber(reach);
+      scamsEl.textContent = formatNumber(scams);
+      moneyEl.textContent = `$${formatNumber(money)}`;
     }
   }
 
@@ -74,8 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && !animatedIn) {
-          animatedIn = true;
+        if (entry.isIntersecting) {
           render(true);
           io.disconnect();
         }
@@ -84,17 +104,4 @@ document.addEventListener("DOMContentLoaded", () => {
     { threshold: 0.3 }
   );
   io.observe(section);
-
-  if (!prefersReducedMotion) {
-    let ticks = 0;
-    const interval = setInterval(() => {
-      if (!animatedIn || ticks >= 4) {
-        clearInterval(interval);
-        return;
-      }
-      ticks += 1;
-      reach += Math.floor(Math.random() * 2) + 1;
-      render(false);
-    }, 30000);
-  }
 });

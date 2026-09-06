@@ -1,0 +1,8 @@
+{
+  "name": "techease-safety-course",
+  "private": true,
+  "description": "Free online safety course companion site for TechEase",
+  "dependencies": {
+    "@netlify/blobs": "^11.0.3"
+  }
+}

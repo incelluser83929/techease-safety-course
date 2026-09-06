@@ -39,10 +39,10 @@
 
   <main id="main">
     <section class="hero">
-      <div class="container hero-content">
+      <div class="container hero-grid">
         <div class="hero-copy">
           <span class="hero-eyebrow">🔒 Free &middot; Self-paced &middot; No sign-up required</span>
-          <h1>Learn to spot scams before they cost you.</h1>
+          <h1>Learn to spot scams <span class="text-gradient">before they cost you.</span></h1>
           <p class="hero-lead">
             A simple, free course that helps you and the people you love recognize online scams,
             avoid ransomware, and stay in control of your devices — brought to you by TechEase.
@@ -51,6 +51,9 @@
             <a class="btn btn-primary btn-lg" href="/course.html">Start the Free Course</a>
             <a class="btn btn-outline btn-lg" href="#about">Learn About TechEase</a>
           </div>
+        </div>
+        <div class="hero-media">
+          <img src="/assets/img/hero-seniors.jpg" alt="TechEase student volunteers sitting with a senior, teaching digital skills" />
         </div>
       </div>
     </section>
@@ -79,18 +82,20 @@
             <a class="btn btn-primary" href="https://www.techeasefl.org/" target="_blank" rel="noopener">Visit techeasefl.org</a>
           </p>
         </div>
-        <div class="about-card reveal">
-          <img class="about-logo" src="/assets/img/techease-logo.png" alt="" />
-          <h3>Want hands-on help?</h3>
-          <p>
-            If you're in South Florida, TechEase offers free one-on-one tech mentorship —
-            a real person to walk you through your device and answer questions at your own pace.
-          </p>
-          <p>
-            If you're elsewhere, this free course covers the same core safety skills we teach
-            in person: recognizing scams, securing your accounts, and knowing what to do if something
-            goes wrong.
-          </p>
+        <div class="reveal">
+          <img class="about-photo" src="/assets/img/community-workshop.jpg" alt="TechEase volunteers helping seniors with their devices at a community workshop" />
+          <div class="about-card">
+            <h3>Want hands-on help?</h3>
+            <p>
+              If you're in South Florida, TechEase offers free one-on-one tech mentorship —
+              a real person to walk you through your device and answer questions at your own pace.
+            </p>
+            <p>
+              If you're elsewhere, this free course covers the same core safety skills we teach
+              in person: recognizing scams, securing your accounts, and knowing what to do if something
+              goes wrong.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -148,18 +153,18 @@
     <section>
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Illustrative impact model</span>
-          <h2>What free scam education could mean at scale</h2>
+          <span class="eyebrow">Real-time impact</span>
+          <h2>What this course has meant so far</h2>
           <p>
-            This isn't a live count of real visitors — it's a disclosed model that grows a
-            little each day to illustrate why this kind of education matters. See exactly how
-            it's calculated below.
+            The visit count below is real — recorded by this site itself each time someone
+            visits, not simulated. The scam/dollar figures next to it are estimates built from
+            that real number. See exactly how below.
           </p>
         </div>
         <div class="impact-grid reveal">
           <div class="impact-figure">
             <strong id="impact-reach">0</strong>
-            <span>estimated people reached (projected)</span>
+            <span>real site visits since launch</span>
           </div>
           <div class="impact-figure">
             <strong id="impact-scams">0</strong>
@@ -170,19 +175,20 @@
             <span>estimated losses potentially avoided</span>
           </div>
         </div>
+        <p id="impact-note" style="text-align:center; color: var(--muted-foreground); font-size: 0.85rem; min-height: 1.2em;"></p>
         <details class="impact-methodology">
           <summary>How we calculate this</summary>
           <p>
-            This model starts from a small baseline and grows a little every day to represent
-            a free course like this reaching more people over time — it is <strong>not</strong>
-            a live count of actual visitors or completions. To translate reach into "potential
+            "Site visits since launch" is a real number, recorded by a small counter built into
+            this site (one count per visitor session) — it is <strong>not</strong> simulated or
+            borrowed from another site. To translate that real visit count into "potential
             impact," we assume roughly one in three people who complete security-awareness
             education like this avoid at least one scam attempt they might otherwise have
-            fallen for (an illustrative assumption, not a cited study), and we use $1,000 as a
-            round, conservative stand-in for a typical avoided loss, loosely informed by the
-            scale of losses reported in the FBI's IC3 elder fraud reports. These numbers are
-            meant to illustrate why this kind of education matters — they are not an audited
-            measurement of this specific course's real-world results.
+            fallen for (an illustrative assumption, not a cited study — we're not aware of one
+            that measures this precisely), and we use $1,000 as a round, conservative stand-in
+            for a typical avoided loss, loosely informed by the scale of losses reported in the
+            FBI's IC3 elder fraud reports. So: the visit count is real; the scams-avoided and
+            dollars-protected figures are illustrative projections from it, not audited outcomes.
           </p>
         </details>
       </div>
