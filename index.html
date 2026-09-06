@@ -211,6 +211,24 @@
       </div>
     </section>
 
+    <section style="background: var(--secondary);">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Real visitor data</span>
+          <h2>Where our visitors are from</h2>
+          <p>
+            Built from real visits to this site, aggregated by country — no individual visitor
+            location is stored, just a running count per country. Hover a country for its count.
+          </p>
+        </div>
+        <div class="visits-map-wrap reveal">
+          <div id="visits-map"></div>
+          <div id="visits-map-tooltip" class="visits-map-tooltip" hidden></div>
+        </div>
+        <p class="visits-map-note">Darker = more visits from that country.</p>
+      </div>
+    </section>
+
     <section>
       <div class="container">
         <div class="section-head">
@@ -306,5 +324,8 @@
 
   <script src="/assets/js/main.js"></script>
   <script src="/assets/js/impact-counter.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+  <script src="/assets/js/visits-map.js"></script>
 </body>
 </html>

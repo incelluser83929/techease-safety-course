@@ -455,6 +455,25 @@ section { padding: 84px 0; }
   .contact-grid { grid-template-columns: 1fr; }
 }
 
+/* ---------- Visits world map ---------- */
+.visits-map-wrap {
+  position: relative; background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm);
+}
+.visits-map-wrap svg { width: 100%; height: auto; display: block; }
+.visits-map-wrap path.country { cursor: pointer; transition: stroke-width 0.15s ease; }
+.visits-map-tooltip {
+  position: absolute; z-index: 5; pointer-events: none;
+  background: var(--foreground); color: var(--background);
+  font-size: 0.85rem; font-weight: 600; padding: 6px 12px;
+  border-radius: 999px; box-shadow: var(--shadow); white-space: nowrap;
+  transform: translate(-50%, -130%);
+}
+.visits-map-tooltip[hidden] { display: none; }
+.visits-map-note {
+  text-align: center; color: var(--muted-foreground); font-size: 0.85rem; margin-top: 14px;
+}
+
 /* ---------- Impact model ---------- */
 .impact-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 26px;
