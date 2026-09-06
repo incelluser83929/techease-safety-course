@@ -453,3 +453,28 @@ section { padding: 84px 0; }
 @media (max-width: 860px) {
   .contact-grid { grid-template-columns: 1fr; }
 }
+
+/* ---------- Impact model ---------- */
+.impact-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 26px;
+}
+.impact-figure {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 32px 24px; text-align: center; box-shadow: var(--shadow-sm);
+}
+.impact-figure strong {
+  display: block; font-size: 2.1rem; color: var(--primary); font-variant-numeric: tabular-nums;
+  margin-bottom: 6px;
+}
+.impact-figure span { color: var(--muted-foreground); font-size: 0.9rem; }
+
+.impact-methodology {
+  max-width: 720px; margin: 0 auto; background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 22px;
+}
+.impact-methodology summary { cursor: pointer; font-weight: 600; }
+.impact-methodology p { margin: 10px 0 0; color: var(--muted-foreground); font-size: 0.92rem; }
+
+@media (max-width: 760px) {
+  .impact-grid { grid-template-columns: 1fr; }
+}
