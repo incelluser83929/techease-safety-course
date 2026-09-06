@@ -10,7 +10,10 @@ import { getStore } from "@netlify/blobs";
 const KEY = "homepage-visits";
 
 export default async (request) => {
-  const store = getStore("site-stats");
+  // "strong" consistency: reads always hit the authoritative copy rather
+  // than a possibly-stale edge replica. Blobs default to eventual
+  // consistency, which caused visible lag/races between GET and POST here.
+  const store = getStore({ name: "site-stats", consistency: "strong" });
 
   if (request.method === "GET") {
     const current = (await store.get(KEY, { type: "json" })) || { count: 0 };
