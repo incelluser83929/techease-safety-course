@@ -4,11 +4,19 @@
    It increments once per browser session (via sessionStorage) so refreshing
    the page doesn't inflate it. The "scams avoided" / "money protected"
    figures are still illustrative extrapolations from that real count — we
-   have no way to measure actual scam outcomes — and that assumption is
-   disclosed in the page's "How we calculate this" section. */
+   have no way to measure actual scam outcomes — but are now grounded in
+   real, cited sources rather than round guesses (see the page's "How we
+   calculate this" disclosure for the reasoning and links):
+   - 3% avoidance rate: Microsoft's Digital Defense Report finding that
+     basic security-awareness training alone (no ongoing reinforcement)
+     reduces phishing susceptibility by about that much.
+   - $500 avoided loss: a deliberately conservative fraction of the FBI
+     IC3 2024 report's $19,372 average loss per complaint ($33,231 for
+     victims 60+) — that average is skewed way up by large-dollar categories
+     (investment fraud, BEC) this basic course doesn't really address. */
 
-const AVOIDANCE_RATE = 0.32;
-const AVG_LOSS_AVOIDED = 1000;
+const AVOIDANCE_RATE = 0.03;
+const AVG_LOSS_AVOIDED = 500;
 const SESSION_FLAG = "techease-visit-counted";
 
 function formatNumber(n) {
