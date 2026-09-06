@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script>document.documentElement.classList.add("js");</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Stay Safe Online by TechEase</title>
+  <meta name="description" content="Have a question about the course, or want to work with TechEase? Send us a message." />
+  <link rel="icon" href="/assets/img/techease-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav">
+      <a class="nav-brand" href="/">
+        <img src="/assets/img/techease-logo.png" alt="TechEase logo" />
+        <span class="nav-brand-text"><strong>Stay Safe Online</strong><span>a free course by TechEase</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/course.html">Course</a></li>
+        <li><a href="/resources.html">Resources</a></li>
+        <li><a href="/contact.html" aria-current="page">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a class="btn btn-outline" href="https://www.techeasefl.org/" target="_blank" rel="noopener">Visit TechEase.org</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section style="padding-bottom: 30px;">
+      <div class="container">
+        <div class="section-head" style="margin-bottom: 34px;">
+          <span class="eyebrow">Get in touch</span>
+          <h1>Have a question, or want to work with us?</h1>
+          <p>Whether it's about something in the course, a suggestion, a partnership idea, or you'd like to volunteer — we'd love to hear from you.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="form-card reveal">
+            <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contact-form">
+              <input type="hidden" name="form-name" value="contact" />
+              <p class="form-honeypot">
+                <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+              </p>
+
+              <div class="form-field">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required autocomplete="name" />
+              </div>
+              <div class="form-field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required autocomplete="email" />
+              </div>
+              <div class="form-field">
+                <label for="reason">What's this about?</label>
+                <select id="reason" name="reason">
+                  <option>General question about the course</option>
+                  <option>I'd like to volunteer or get involved</option>
+                  <option>Partnership or media inquiry</option>
+                  <option>Something on the site isn't working</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg btn-block">Send Message</button>
+            </form>
+
+            <p class="form-status" id="form-status" hidden></p>
+          </div>
+
+          <div class="contact-side">
+            <div class="resource-card reveal">
+              <h3>✉️ Email us directly</h3>
+              <p>Prefer email? Reach TechEase directly at:</p>
+              <a class="btn btn-outline" href="mailto:techeasefl@gmail.com">techeasefl@gmail.com</a>
+            </div>
+            <div class="resource-card reveal">
+              <h3>🤝 Want hands-on mentorship?</h3>
+              <p>If you're in South Florida, learn more about TechEase's free one-on-one mentorship program.</p>
+              <a class="btn btn-outline" href="https://www.techeasefl.org/" target="_blank" rel="noopener">Visit techeasefl.org</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">© <span data-year></span> TechEase. This companion course is free and provided for educational purposes.</div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/contact.js"></script>
+</body>
+</html>

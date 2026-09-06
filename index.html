@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <script>document.documentElement.classList.add("js");</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stay Safe Online — A Free Course by TechEase</title>
@@ -31,6 +32,7 @@
         <li><a href="/" aria-current="page">Home</a></li>
         <li><a href="/course.html">Course</a></li>
         <li><a href="/resources.html">Resources</a></li>
+        <li><a href="/contact.html">Contact</a></li>
       </ul>
       <div class="nav-actions">
         <a class="btn btn-outline" href="https://www.techeasefl.org/" target="_blank" rel="noopener">Visit TechEase.org</a>
@@ -40,7 +42,9 @@
 
   <main id="main">
     <section class="hero">
-      <div class="container hero-grid">
+      <div class="hero-canvas-wrap" id="hero-canvas" aria-hidden="true"></div>
+      <div class="hero-scrim" aria-hidden="true"></div>
+      <div class="container hero-content">
         <div class="hero-copy">
           <span class="hero-eyebrow">🔒 Free &middot; Self-paced &middot; No sign-up required</span>
           <h1>Learn to spot scams before they cost you.</h1>
@@ -52,9 +56,7 @@
             <a class="btn btn-primary btn-lg" href="/course.html">Start the Free Course</a>
             <a class="btn btn-outline btn-lg" href="#about">Learn About TechEase</a>
           </div>
-        </div>
-        <div class="hero-visual">
-          <div class="hero-canvas-wrap" id="hero-canvas" aria-hidden="true"></div>
+          <p class="hero-hint">📱 Move your mouse around — try hovering the phones.</p>
         </div>
       </div>
     </section>
@@ -83,7 +85,7 @@
             <a class="btn btn-primary" href="https://www.techeasefl.org/" target="_blank" rel="noopener">Visit techeasefl.org</a>
           </p>
         </div>
-        <div class="about-card">
+        <div class="about-card reveal">
           <img class="about-logo" src="/assets/img/techease-logo.png" alt="" />
           <h3>Want hands-on help?</h3>
           <p>
@@ -110,32 +112,32 @@
           </p>
         </div>
         <div class="threat-grid">
-          <div class="threat-card">
+          <div class="threat-card reveal">
             <div class="icon">☎️</div>
             <h3>Tech support scams</h3>
             <p>A pop-up or phone call claims your computer is infected and asks you to pay for "help" or grant remote access.</p>
           </div>
-          <div class="threat-card">
+          <div class="threat-card reveal">
             <div class="icon">✉️</div>
             <h3>Phishing emails &amp; texts</h3>
             <p>Fake messages impersonate your bank, Amazon, or Social Security to trick you into clicking a link or sharing info.</p>
           </div>
-          <div class="threat-card">
+          <div class="threat-card reveal">
             <div class="icon">👪</div>
             <h3>Grandparent &amp; emergency scams</h3>
             <p>A caller pretends to be a family member in trouble, pressuring you to send money right away.</p>
           </div>
-          <div class="threat-card">
+          <div class="threat-card reveal">
             <div class="icon">💻</div>
             <h3>Ransomware</h3>
             <p>Malicious software locks your files and demands payment to get them back — with no guarantee they will.</p>
           </div>
-          <div class="threat-card">
+          <div class="threat-card reveal">
             <div class="icon">💞</div>
             <h3>Romance &amp; trust scams</h3>
             <p>A stranger builds an online relationship over weeks or months, then asks for money for an "emergency."</p>
           </div>
-          <div class="threat-card">
+          <div class="threat-card reveal">
             <div class="icon">🔑</div>
             <h3>Reused passwords</h3>
             <p>One password used everywhere means a single data breach can unlock many of your other accounts.</p>
@@ -157,32 +159,32 @@
           <p>Work through them in order, or jump to whatever's most relevant to you right now.</p>
         </div>
         <div class="module-grid">
-          <a class="module-card" href="/lessons/1-ransomware-basics.html">
+          <a class="module-card reveal" href="/lessons/1-ransomware-basics.html">
             <span class="module-num">1</span>
             <h3>Ransomware Basics</h3>
             <p>What it is, how it spreads, and why it targets everyday people.</p>
           </a>
-          <a class="module-card" href="/lessons/2-phishing-scams.html">
+          <a class="module-card reveal" href="/lessons/2-phishing-scams.html">
             <span class="module-num">2</span>
             <h3>Recognizing Phishing &amp; Scam Calls</h3>
             <p>Spot the red flags in emails, texts, and phone calls.</p>
           </a>
-          <a class="module-card" href="/lessons/3-password-security.html">
+          <a class="module-card reveal" href="/lessons/3-password-security.html">
             <span class="module-num">3</span>
             <h3>Password &amp; Account Security</h3>
             <p>Strong passwords, password managers, and two-factor authentication.</p>
           </a>
-          <a class="module-card" href="/lessons/4-updates-backups.html">
+          <a class="module-card reveal" href="/lessons/4-updates-backups.html">
             <span class="module-num">4</span>
             <h3>Updates &amp; Backups</h3>
             <p>The single best defense against ransomware — and it's free.</p>
           </a>
-          <a class="module-card" href="/lessons/5-safe-browsing.html">
+          <a class="module-card reveal" href="/lessons/5-safe-browsing.html">
             <span class="module-num">5</span>
             <h3>Safe Browsing &amp; Downloads</h3>
             <p>Avoid the fake pop-ups and downloads that install malware.</p>
           </a>
-          <a class="module-card" href="/lessons/6-if-youre-a-victim.html">
+          <a class="module-card reveal" href="/lessons/6-if-youre-a-victim.html">
             <span class="module-num">6</span>
             <h3>What To Do If You're a Victim</h3>
             <p>The exact steps to take — calmly and without shame.</p>
@@ -193,7 +195,7 @@
 
     <section>
       <div class="container">
-        <div class="cta-banner">
+        <div class="cta-banner reveal">
           <h2>Ready to protect yourself and the people you love?</h2>
           <p>It takes about 30 minutes to go through all six lessons.</p>
           <a class="btn btn-primary btn-lg" href="/course.html">Start the Free Course</a>
@@ -231,8 +233,8 @@
           <h4>TechEase</h4>
           <ul>
             <li><a href="https://www.techeasefl.org/" target="_blank" rel="noopener">Main website</a></li>
-            <li><a href="https://www.techeasefl.org/" target="_blank" rel="noopener">Request mentorship</a></li>
-            <li><a href="https://www.techeasefl.org/" target="_blank" rel="noopener">Volunteer</a></li>
+            <li><a href="/contact.html">Contact us</a></li>
+            <li><a href="mailto:techeasefl@gmail.com">techeasefl@gmail.com</a></li>
           </ul>
         </div>
       </div>

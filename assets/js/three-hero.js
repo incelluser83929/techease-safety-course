@@ -1,8 +1,8 @@
-/* Hero 3D scene: a protected "network" motif — a glowing shield-like core
-   wrapped in an orbiting wireframe lattice, floating in a field of soft
-   particles. Kept deliberately light (low poly counts, capped pixel ratio,
-   paused when off-screen/tab-hidden/reduced-motion) since this site's
-   audience often runs older laptops and tablets. */
+/* Hero 3D scene: a field of small glowing phones scattered across the hero
+   background. Hovering one wakes its screen up (emissive glow + scale +
+   a soft point light). Kept deliberately light (low poly counts, capped
+   pixel ratio, paused when off-screen/tab-hidden/reduced-motion) since this
+   site's audience often runs older laptops and tablets. */
 
 import * as THREE from "three";
 
@@ -11,100 +11,148 @@ if (mount) {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
-  camera.position.set(0, 0, 9);
+  const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+  camera.position.set(0, 0, 11);
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
   mount.appendChild(renderer.domElement);
 
-  const primary = new THREE.Color(0x0079b8);
-  const accent = new THREE.Color(0x00b8a1);
+  const bodyColor = 0x0e1e27;
+  const accent = 0x00cab1;
 
-  // Soft core representing a protected device/account
-  const core = new THREE.Mesh(
-    new THREE.IcosahedronGeometry(1.6, 1),
-    new THREE.MeshStandardMaterial({
-      color: primary,
-      emissive: primary,
-      emissiveIntensity: 0.25,
-      roughness: 0.35,
-      metalness: 0.1,
-      flatShading: true,
-    })
-  );
-  scene.add(core);
-
-  // Orbiting wireframe "shield" lattice
-  const lattice = new THREE.Mesh(
-new THREE.IcosahedronGeometry(2.35, 1),
-    new THREE.MeshBasicMaterial({ color: accent, wireframe: true, transparent: true, opacity: 0.55 })
-  );
-  scene.add(lattice);
-
-  // Ambient particle field
-  const PARTICLE_COUNT = 220;
-  const positions = new Float32Array(PARTICLE_COUNT * 3);
-  for (let i = 0; i < PARTICLE_COUNT; i += 1) {
-    const radius = 4.5 + Math.random() * 4;
-    const theta = Math.random() * Math.PI * 2;
-    const phi = Math.acos(2 * Math.random() - 1);
-    positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
-    positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-    positions[i * 3 + 2] = radius * Math.cos(phi);
-  }
-  const particleGeometry = new THREE.BufferGeometry();
-  particleGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-  const particleMaterial = new THREE.PointsMaterial({
-    color: accent,
-    size: 0.045,
-    transparent: true,
-    opacity: 0.6,
-    sizeAttenuation: true,
-  });
-  const particles = new THREE.Points(particleGeometry, particleMaterial);
-  scene.add(particles);
-
-  scene.add(new THREE.AmbientLight(0xffffff, 0.7));
-  const key = new THREE.DirectionalLight(0xffffff, 0.9);
-  key.position.set(4, 4, 6);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+  const key = new THREE.DirectionalLight(0xffffff, 0.55);
+  key.position.set(4, 6, 8);
   scene.add(key);
 
-  let width = 0;
-  let height = 0;
+  const hoverLight = new THREE.PointLight(accent, 0, 5, 2);
+  hoverLight.position.set(0, 0, 2);
+  scene.add(hoverLight);
+
+  function buildPhone() {
+    const group = new THREE.Group();
+
+    const body = new THREE.Mesh(
+      new THREE.BoxGeometry(0.62, 1.28, 0.1),
+      new THREE.MeshStandardMaterial({ color: bodyColor, roughness: 0.5, metalness: 0.3 })
+    );
+    group.add(body);
+
+    const screenMaterial = new THREE.MeshStandardMaterial({
+      color: 0x02181a,
+      emissive: new THREE.Color(accent),
+      emissiveIntensity: 0.1,
+      roughness: 0.35,
+    });
+    const screen = new THREE.Mesh(new THREE.BoxGeometry(0.5, 1.06, 0.02), screenMaterial);
+    screen.position.z = 0.055;
+    group.add(screen);
+
+    const notch = new THREE.Mesh(
+      new THREE.BoxGeometry(0.14, 0.03, 0.03),
+      new THREE.MeshStandardMaterial({ color: bodyColor })
+    );
+    notch.position.set(0, 0.49, 0.066);
+    group.add(notch);
+
+    group.userData.screenMaterial = screenMaterial;
+    group.userData.hoverT = 0;
+    return group;
+  }
+
+  const PHONE_COUNT = 24;
+  const phones = [];
+  // On desktop the canvas sits full-bleed behind the text column, which is
+  // masked out by a scrim (see .hero-scrim, styles.css) — so phones are
+  // biased screen-right to stay clear of it. On mobile the canvas is its
+  // own band above the text (no overlap), so phones spread evenly instead.
+  const isDesktopLayout = window.matchMedia("(min-width: 901px)").matches;
+
+  for (let i = 0; i < PHONE_COUNT; i += 1) {
+    const phone = buildPhone();
+    const x = isDesktopLayout ? Math.random() * 8 + 4 : (Math.random() - 0.5) * 11;
+    const y = (Math.random() - 0.5) * 9.5;
+    const z = (Math.random() - 0.5) * 6 - 1;
+    phone.position.set(x, y, z);
+    phone.rotation.set((Math.random() - 0.5) * 0.5, (Math.random() - 0.5) * 0.9, (Math.random() - 0.5) * 0.35);
+    const scale = 0.7 + Math.random() * 0.95;
+    phone.scale.setScalar(scale);
+    phone.userData.baseScale = scale;
+    phone.userData.baseY = y;
+    phone.userData.baseRotY = phone.rotation.y;
+    phone.userData.floatPhase = Math.random() * Math.PI * 2;
+    phone.userData.floatSpeed = 0.35 + Math.random() * 0.35;
+    scene.add(phone);
+    phones.push(phone);
+  }
 
   function resize() {
-    width = mount.clientWidth;
-    height = mount.clientHeight;
+    const width = mount.clientWidth;
+    const height = mount.clientHeight;
     renderer.setSize(width, height, false);
     camera.aspect = width / Math.max(height, 1);
     camera.updateProjectionMatrix();
   }
-
-  const resizeObserver = new ResizeObserver(resize);
-  resizeObserver.observe(mount);
+  new ResizeObserver(resize).observe(mount);
   resize();
 
-  let targetX = 0;
-  let targetY = 0;
-  window.addEventListener("pointermove", (event) => {
-    targetX = (event.clientX / window.innerWidth - 0.5) * 2;
-    targetY = (event.clientY / window.innerHeight - 0.5) * 2;
+  const raycaster = new THREE.Raycaster();
+  const pointer = new THREE.Vector2(-10, -10);
+
+  function onPointerMove(event) {
+    const rect = mount.getBoundingClientRect();
+    const inside =
+      event.clientX >= rect.left && event.clientX <= rect.right &&
+      event.clientY >= rect.top && event.clientY <= rect.bottom;
+    if (!inside) {
+      pointer.set(-10, -10);
+      return;
+    }
+    pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+  }
+  window.addEventListener("pointermove", onPointerMove);
+  window.addEventListener("touchmove", (event) => {
+    if (event.touches[0]) onPointerMove(event.touches[0]);
   });
 
   let running = false;
-  let clock = new THREE.Clock();
+  const clock = new THREE.Clock();
 
   function renderFrame() {
-    const delta = clock.getDelta();
-    core.rotation.y += delta * 0.18;
-    core.rotation.x += delta * 0.08;
-    lattice.rotation.y -= delta * 0.1;
-    lattice.rotation.x += delta * 0.05;
-    particles.rotation.y += delta * 0.03;
+    const delta = Math.min(clock.getDelta(), 0.05);
+    const elapsed = clock.elapsedTime;
 
-    camera.position.x += (targetX * 1.2 - camera.position.x) * 0.03;
-    camera.position.y += (-targetY * 1.2 - camera.position.y) * 0.03;
+    raycaster.setFromCamera(pointer, camera);
+    const hits = raycaster.intersectObjects(phones, true);
+    const hovered = hits.length ? hits[0].object.parent : null;
+
+    let hoverTarget = null;
+    phones.forEach((phone) => {
+      const isHovered = phone === hovered;
+      if (isHovered) hoverTarget = phone;
+      phone.userData.hoverT += ((isHovered ? 1 : 0) - phone.userData.hoverT) * Math.min(delta * 6, 1);
+      const t = phone.userData.hoverT;
+
+      phone.userData.screenMaterial.emissiveIntensity = 0.1 + t * 1.7;
+      phone.scale.setScalar(phone.userData.baseScale * (1 + t * 0.25));
+
+      phone.position.y =
+        phone.userData.baseY + Math.sin(elapsed * phone.userData.floatSpeed + phone.userData.floatPhase) * 0.18;
+      phone.rotation.y =
+        phone.userData.baseRotY + Math.sin(elapsed * 0.2 + phone.userData.floatPhase) * 0.12 + t * 0.18;
+    });
+
+    if (hoverTarget) {
+      hoverLight.position.copy(hoverTarget.position);
+      hoverLight.intensity += (2.2 - hoverLight.intensity) * 0.15;
+    } else {
+      hoverLight.intensity *= 0.85;
+    }
+
+    camera.position.x += (pointer.x * 0.7 - camera.position.x) * 0.02;
+    camera.position.y += (pointer.y * 0.5 - camera.position.y) * 0.02;
     camera.lookAt(0, 0, 0);
 
     renderer.render(scene, camera);
@@ -131,9 +179,7 @@ new THREE.IcosahedronGeometry(2.35, 1),
     renderFrame();
   } else {
     const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => (entry.isIntersecting ? start() : stop()));
-      },
+      (entries) => entries.forEach((entry) => (entry.isIntersecting ? start() : stop())),
       { threshold: 0.05 }
     );
     io.observe(mount);
